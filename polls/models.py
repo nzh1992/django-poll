@@ -13,7 +13,9 @@ class Question(models.Model):
 
     def was_published_recently(self):
         """是否为最近发布"""
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=30)
+        now = timezone.now()
+        # return self.pub_date >= timezone.now() - datetime.timedelta(days=30)
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
 
 class Choice(models.Model):
